@@ -42,7 +42,7 @@ public class AnalyzeHandler {
                 System.out.println(text + " " + conceptClass);
                 JSONObject res = new JSONObject();
 
-                TextAnalyzer textAnalyzer = new TextAnalyzer();
+                TextAnalyzerFocus textAnalyzer = new TextAnalyzerFocus();
                 textAnalyzer.textAnalyzer(text, conceptClass);
                 List<String> concepts = new ArrayList<>();
 
@@ -61,14 +61,14 @@ public class AnalyzeHandler {
                 res.put("Class", c[0].getConceptSubclass());
                 res.put("Metadata", "");
                 res.put("Class matching", c[0].getAccuracy());
-                res.put("Concept matching", 1.0f/c.length);
+                res.put("Concept matching", 1);
 
                 List<JSONObject> othersList = new ArrayList<>();
 
-                for(int i = 1; i < c.length; i ++) {
+                for(string i : c[0].getCharacteristics()) {
                     JSONObject o = new JSONObject();
-                    o.put("name", c[i].getName());
-                    o.put("matching", 1.0f/c.length);
+                    o.put("name", i);
+                    o.put("matching", 1);
                     othersList.add(o);
                 }
 
